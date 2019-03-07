@@ -12,6 +12,7 @@ class Glib < Formula
     sha256 "e4ae5819ce461f0e8f0f1ad090b72b5b0971b351d900dea9418fa55b47186cc3" => :x86_64_linux
   end
 
+  depends_on "gpatch" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
@@ -35,7 +36,7 @@ class Glib < Formula
 
     # Disable dtrace; see https://trac.macports.org/ticket/30413
     args = %W[
-      -Dgio_module_dir=#{HOMEBREW_PREFIX}/lib/gio/modules
+      -Dgio_module_dir=#{HOMEBREW_PREFIX}/lib64/gio/modules
       -Dbsymbolic_functions=false
     ]
 
@@ -51,8 +52,8 @@ class Glib < Formula
     # used by glib-networking and glib-openssl to determine where to install
     # their modules
     inreplace lib/"pkgconfig/gio-2.0.pc",
-              "giomoduledir=#{HOMEBREW_PREFIX}/lib/gio/modules",
-              "giomoduledir=${prefix}/lib/gio/modules"
+              "giomoduledir=#{HOMEBREW_PREFIX}/lib64/gio/modules",
+              "giomoduledir=${prefix}/lib64/gio/modules"
 
     if OS.mac?
       # `pkg-config --libs glib-2.0` includes -lintl, and gettext itself does not
