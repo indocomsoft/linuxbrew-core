@@ -12,6 +12,7 @@ class Glib < Formula
     sha256 "e4ae5819ce461f0e8f0f1ad090b72b5b0971b351d900dea9418fa55b47186cc3" => :x86_64_linux
   end
 
+  depends_on "gpatch" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
