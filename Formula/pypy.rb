@@ -23,7 +23,7 @@ class Pypy < Formula
   unless OS.mac?
     depends_on "expat"
     depends_on "libffi"
-    depends_on "tcl-tk"
+    depends_on "tcl-tk" if build.with? "tcl-tk"
     depends_on "zlib"
   end
 
