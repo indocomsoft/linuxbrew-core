@@ -49,7 +49,9 @@ class Pypy < Formula
   end
 
   def install
-    ENV.append "CFLAGS", "-I#{MacOS.sdk_path}/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers"
+    if OS.mac? && MacOS.sdk_path_if_needed
+      ENV.append "CFLAGS", "-I#{MacOS.sdk_path}/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers"
+    end
     # Having PYTHONPATH set can cause the build to fail if another
     # Python is present, e.g. a Homebrew-provided Python 2.x
     # See https://github.com/Homebrew/homebrew/issues/24364
